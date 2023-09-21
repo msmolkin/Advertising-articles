@@ -60,7 +60,6 @@ class GPTAsker:
                 # TODO: sometimes, the first block is just a number, e.g. "910"
                 print('Warning: Block did not contain expected format -', block)
 
-        # doesn't work, because my prompt sometimes doesn't produce an article length
         # parsed_response["length"] = self.original_response.split("\n")[0].split(": ")[1] # "Story Length: 910"
         # parsed_response["symbol"] = self.original_response.split("\n")[2].split(": ")[1]
         # parsed_response["category"] = self.original_response.split("\n")[4].split(": ")[1]
