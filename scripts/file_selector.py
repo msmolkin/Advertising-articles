@@ -1,6 +1,8 @@
 import os
 
 def list_files():
+    os.chdir(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "articles"))
+    
     text_document_extensions = (".txt", ".rtf", ".docx", ".pdf")
     files = [f for f in os.listdir() if os.path.isfile(f) and f.endswith(text_document_extensions)]
     for idx, file in enumerate(files):

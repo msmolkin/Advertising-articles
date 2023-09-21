@@ -3,6 +3,7 @@ import os
 from time import time, sleep
 from docx import Document
 from read_google_doc import read_google_doc
+from parse_google_doc import GoogleDocParser
 
 class FileDownloadError(Exception):
     """Raised when a file is not successfully downloaded from the server."""
@@ -33,28 +34,93 @@ class FileReader:
                 sleep(1)
             print("File downloaded.")
 
-    def read_docx(self, filename):
+    # original read_docx function
+    # def read_docx(self, filename):
+    #     doc = Document(filename)
+    #     fullText = []
+        
+    #     for para in doc.paragraphs:
+    #         if len(para.text) == 0 or para.text.isspace(): # ignore empty paragraphs
+    #             continue
+    #         else:
+    #             heading_level = None
+
+    #             # if paragraph is a heading, add a newline before and after it
+    #             if para.style.name.startswith("Heading"):
+    #                 try:
+    #                     heading_level = int(para.style.name[-1])  # get the heading level
+    #                 except ValueError:  # if it's not a numbered heading like "Heading 1"
+    #                     pass
+    #                 fullText.append(("\n" + para.text + "\n", heading_level)) 
+    #             else:
+    #                 fullText.append((para.text, heading_level))
+
+    #     return fullText
+
+    # Attempting to include hyperlinks
+    # @staticmethod
+    # def read_docx(filename):
+    #     doc = Document(filename)
+    #     fullText = []
+
+    #     for para in doc.paragraphs:
+    #         if len(para.text) == 0 or para.text.isspace():  # ignore empty paragraphs
+    #             continue
+    #         else:
+    #             heading_level = None
+    #             paragraph_text = ""
+
+    #             # Check if the paragraph is a heading
+    #             if para.style.name.startswith("Heading"):
+    #                 try:
+    #                     heading_level = int(para.style.name[-1])  # get the heading level
+    #                 except ValueError:  # if it's not a numbered heading like "Heading 1"
+    #                     pass
+
+    #             # Extract the paragraph text, including the text of hyperlinks
+    #             for run in para.runs:
+    #                 if "w:hyperlink" in run._element.xml:
+    #                     for child in run._element.getchildren():
+    #                         if child.text:
+    #                             paragraph_text += child.text
+    #                 else:
+    #                     paragraph_text += run.text
+
+    #             fullText.append((paragraph_text, heading_level))
+
+    #     return fullText
+
+    # Removing additional time from going through the runs
+    @staticmethod
+    def read_docx(filename):
+        # TODO: add support for hyperlinks, or at least notify the user that hyperlinks were in the paragraph
         doc = Document(filename)
         fullText = []
-        
+
         for para in doc.paragraphs:
-            if len(para.text) == 0 or para.text.isspace(): # ignore empty paragraphs
+            if len(para.text) == 0 or para.text.isspace():  # ignore empty paragraphs
                 continue
             else:
                 heading_level = None
+                paragraph_text = ""
 
-                # if paragraph is a heading, add a newline before and after it
+                # Check if the paragraph is a heading
                 if para.style.name.startswith("Heading"):
                     try:
                         heading_level = int(para.style.name[-1])  # get the heading level
                     except ValueError:  # if it's not a numbered heading like "Heading 1"
                         pass
-                    fullText.append(("\n" + para.text + "\n", heading_level)) 
-                else:
-                    fullText.append((para.text, heading_level))
+
+                paragraph_text = ""
+                if heading_level is not None:
+                    paragraph_text += "\n" # add a newline before headings
+                paragraph_text += para.text
+
+                fullText.append((paragraph_text, heading_level))
 
         return fullText
 
+    @staticmethod
     def check_and_download_file(self, filename):
         try:
             with open(filename, "rb") as f:
@@ -68,29 +134,34 @@ class FileReader:
                 raise FileDownloadError("Downloading operation timed out.")
 
     @staticmethod
-    def is_heading(paragraph):
+    def heading_of(paragraph, heading_type=2):
         # Primitive test
-        return 0 < len(paragraph) < 100
-        # return paragraph.startswith("#")
+        return heading_type if 0 < len(paragraph) < 100 else None # Markdown version: return paragraph.startswith("#")
 
-    def read_article(self, filename: str = "original_article.txt", gdocs_url: str = None, gdocs_id: str = None):
+    @staticmethod
+    def read_text_file(filename):
+        with open(filename, "r") as f:
+            lines = [line.rstrip() for line in f.readlines() if not line.isspace()]
+            formatted_article = [(lines[0], FileReader.heading_of(lines[0].rstrip(), heading_type=1))] # add the title
+            formatted_article += [(line, FileReader.heading_of(line.rstrip())) for line in lines[1:]] # add the rest of the article
+            return formatted_article
+            # return f.read()
+    
+    @staticmethod
+    def read_article(filename: str = "original_article.txt", gdocs_url: str = None, gdocs_id: str = None):
         try:
             if gdocs_id is not None or gdocs_url is not None:
                 return read_google_doc(gdocs_url, gdocs_id)
             
-            self.check_and_download_file(filename)
+            FileReader.check_and_download_file(filename)
 
             if filename.endswith(".txt") or os.path.isfile(filename) and not "." in filename:
-                with open(filename, "r") as f:
-                    a = f.readlines()
-                    result = [(line.rstrip(), FileReader.is_heading(line.rstrip())) for idx, line in enumerate(a, start=1)]
-                    print(result)  # [('hi', 1), ('hihi', 2), ('# hi', 3), ('### hello', 4)]
-                    return f.read()
+                return FileReader.read_text_file(filename)
             elif filename.endswith(".rtf"):
                 with open(filename, "r") as f:
                     return f.read()
             elif filename.endswith(".docx"): # Word document
-                return self.read_docx(filename)
+                return FileReader.read_docx(filename)
             elif filename.endswith(".doc"):
                 raise ValueError("DOC file detected. Please convert to DOCX file.")
             else:
@@ -102,7 +173,26 @@ class FileReader:
         except Exception as e:
             print(f"An error occurred: {e}")
 
+    @staticmethod
+    def parse_article(article_content):
+        # if the article content is just a string, return it
+        if isinstance(article_content, str):
+            return article_content
+        elif isinstance(article_content, list) and isinstance(article_content[0], tuple):
+            parsed_content = ""
+            for paragraph, heading_level in article_content:
+                if heading_level is not None:
+                    parsed_content += f"{'#' * heading_level} {paragraph.strip()}\n\n"
+                else:
+                    parsed_content += f"{paragraph}\n\n"
+            return parsed_content
+        # if the article content is a json object, parse it with GoogleDocParser
+        elif isinstance(article_content, dict):
+            parser = GoogleDocParser(article_content)
+            return parser.parse()
+    
     def print_article(self, article_content):
+        # if I haven't processed the article using tuples, just print it
         if isinstance(article_content, str):
             print(article_content)
         elif isinstance(article_content, list):
@@ -117,9 +207,9 @@ class FileReader:
         filename = gdocs_url = gdocs_id = None
         if args:
             if isinstance(args[0], str):
-                if args[0][-4:] in ['.txt', '.rtf', 'docx', '.doc']:
+                if args[0][-4:] in [".txt", ".rtf", "docx", ".doc"] or "." not in args[0]:
                     filename = args[0]
-                elif args[0].startswith('http'): # assuming the gdocs_url starts with 'http'
+                elif args[0].startswith("http"): # assuming the gdocs_url starts with "http"
                     gdocs_url = args[0]
                 else:
                     gdocs_id = args[0] # treat as the gdocs_id if not a file or url
@@ -130,17 +220,21 @@ class FileReader:
         self.print_article(self.read_article(filename, gdocs_url, gdocs_id))
 
 if __name__ == "__main__":
+    os.chdir("articles")
+    if os.path.isfile(".DS_Store"):
+        os.remove(".DS_Store")
     file_reader = FileReader()
     """
     file_reader.test_read_article()
-    file_reader.test_read_article([f for f in os.listdir() if f.startswith('v')][0]) # test with sparse file
+    file_reader.test_read_article(filename="802B7D14 Lore.txt") # test with TXT file that exists
+    file_reader.test_read_article([f for f in os.listdir() if f.startswith("v")][0]) # test with sparse file
     file_reader.test_read_article(filename="expat_us_tax.rtf") # test with RTF file
     file_reader.test_read_article(filename="AT-15-238 macroaxis.com JMC (A9648WC900) CAN.docx") # test with DOCX file
     file_reader.test_read_article(filename="original_article.doc") # test with DOC file # TODO: will download a DOC file directly to test this if this becomes a common file type
-    file_reader.test_read_article(gdocs_url="https://docs.google.com/document/d/1oMWUwJ_eMIPxtR3sHPA4v67X0oUGqghRHrTa_2XgmMI/edit") # test with Google Docs URL
+    
     file_reader.test_read_article(gdocs_id="1oMWUwJ_eMIPxtR3sHPA4v67X0oUGqghRHrTa_2XgmMI") # test with Google Docs ID
     """
-    file_reader.test_read_article(filename="802B7D14 Lore.txt") # test with TXT file that exists
+    file_reader.test_read_article(gdocs_url="https://docs.google.com/document/d/1oMWUwJ_eMIPxtR3sHPA4v67X0oUGqghRHrTa_2XgmMI/edit") # test with Google Docs URL
     #file_reader.test_read_article(filename="5729-T2131 - O22750-L107911-M119491 - macroaxis.com.docx")
 
 # import os
@@ -249,9 +343,9 @@ if __name__ == "__main__":
 #     filename = gdocs_url = gdocs_id = None
 #     if args:
 #         if isinstance(args[0], str):
-#             if args[0][-4:] in ['.txt', '.rtf', 'docx', '.doc']:
+#             if args[0][-4:] in [".txt", ".rtf", "docx", ".doc"]:
 #                 filename = args[0]
-#             elif args[0].startswith('http'): # assuming the gdocs_url starts with 'http'
+#             elif args[0].startswith("http"): # assuming the gdocs_url starts with "http"
 #                 gdocs_url = args[0]
 #             else:
 #                 gdocs_id = args[0] # treat as the gdocs_id if not a file or url
@@ -265,7 +359,7 @@ if __name__ == "__main__":
 # if __name__ == "__main__":
 #     """
 #     test_read_article()
-#     test_read_article([f for f in os.listdir() if f.startswith('v')][0]) # test with sparse file
+#     test_read_article([f for f in os.listdir() if f.startswith("v")][0]) # test with sparse file
 #     test_read_article(filename="expat_us_tax.rtf") # test with RTF file
 #     test_read_article(filename="AT-15-238 macroaxis.com JMC (A9648WC900) CAN.docx") # test with DOCX file
 #     test_read_article(filename="original_article.doc") # test with DOC file # TODO: will download a DOC file directly to test this if this becomes a common file type
