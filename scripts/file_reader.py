@@ -57,8 +57,8 @@ class FileReader:
                         pass
 
                 paragraph_text = ""
-                if heading_level is not None:
-                    paragraph_text += "\n" # add a newline before headings
+                # if heading_level is not None:
+                #     paragraph_text += "\n" # add a newline before headings
                 paragraph_text += para.text
 
                 fullText.append((paragraph_text, heading_level))
@@ -127,7 +127,7 @@ class FileReader:
             parsed_content = ""
             for paragraph, heading_level in article_content:
                 if heading_level is not None:
-                    parsed_content += f"{'#' * heading_level} {paragraph.strip()}\n\n"
+                    parsed_content += f"\n{'#' * heading_level} {paragraph.strip()}\n\n"
                 else:
                     parsed_content += f"{paragraph}\n\n"
             return parsed_content
@@ -144,7 +144,7 @@ class FileReader:
         elif isinstance(article_content, list):
             for paragraph, heading_level in article_content:
                 if heading_level is not None:
-                    print(f"{'#' * heading_level} {paragraph.strip()}")
+                    print(f"\n{'#' * heading_level} {paragraph.strip()}")
                 else:
                     print(paragraph)
                 print()

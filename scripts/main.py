@@ -7,6 +7,7 @@ from file_selector import select_file
 from os.path import isfile
 import file_reader
 from ask_gpt import GPTAsker
+from inputimeout import inputimeout, TimeoutOccurred
 
 def main():
     if isfile(".DS_Store"):
@@ -19,19 +20,27 @@ def main():
         filename = sys.argv[1]
     elif isfile("original_article.txt"):
         filename = "original_article.txt"
-        
-    elif input("Is the article a Google Doc? (y/n) ").lower() in "tyu":  # accounts for typos
-        gdocs_url = input("Google Docs URL: ")
-        orig_article_json = file_reader.FileReader.read_article(gdocs_url=gdocs_url)
-        orig_article_text = file_reader.FileReader.parse_article(orig_article_json)
+    
     else:
-        while not isfile(filename):
-            # let user scroll through and select a file
-            filename = select_file()
+        try:
+            response = inputimeout(prompt='Is the article a Google Doc? (y/n) ', timeout=5).lower()
+        except TimeoutOccurred:
+            response = 'n'
+
+        if response in "tyu":  # accounts for typos
+            gdocs_url = input("Google Docs URL: ")
+            orig_article_json = file_reader.FileReader.read_article(gdocs_url=gdocs_url)
+            orig_article_text = file_reader.FileReader.parse_article(orig_article_json)
+        else:
+            while not isfile(filename):
+                # let user scroll through and select a file
+                filename = select_file()
+            
     
     try:
         if not orig_article_text:
-            orig_article_text = file_reader.FileReader.read_article(filename)
+            orig_article_paragraphs_list = file_reader.FileReader.read_article(filename)
+            orig_article_text = file_reader.FileReader.parse_article(orig_article_paragraphs_list)
     
         cleaned_article = clean_article_text.replace_punctuation(orig_article_text)
         print("Article with punctuation fixed:")
@@ -44,11 +53,16 @@ def main():
         gpt = GPTAsker(openai_api_key_path)
         gpt.ask_gpt(cleaned_article)
         gpt.parse_response()
-        gpt.print_response()
+        gpt.print_uncopyable_response()
         gpt.copy_parsed_response()
+        gpt.print_copyable_response()
 
     except Exception as e:
         print(f"An error occurred: {e}")
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("\nExiting...")
+        sys.exit(0)

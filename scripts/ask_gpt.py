@@ -71,7 +71,7 @@ class GPTAsker:
         self.parsed_response = parsed_response
         return parsed_response
     
-    def print_response(self):
+    def print_uncopyable_response(self):
         """ Prints the response from OpenAI's API.
         """
         if not self.original_response:
@@ -79,8 +79,16 @@ class GPTAsker:
         # print(self.original_response)
         # pprint(self.parsed_response)
         # pprint the parsed response, but only the keys that cannot be copied: length, symbol, category, coverage
-        pprint({k: v for k, v in self.parsed_response.items() if k in ["length", "symbol", "category", "coverage"]})
+        print('\n'.join(f"{k}: {v}" for k, v in self.parsed_response.items() if k in ["length", "symbol", "category", "coverage"]))
 
+    def print_copyable_response(self):
+        """ Prints the response from OpenAI's API.
+        Print the parts of the response that were copied in case the user didn't save them.
+        """
+        if not self.original_response:
+            raise Exception("You need to call ask_gpt() first. This method depends on the original response from OpenAI's API.")
+        print("Here are the parts of the response that were copied to the clipboard:")
+        print('\n'.join(f"{k}: {v}" for k, v in self.parsed_response.items() if k not in ["length", "symbol", "category", "coverage"]))
     
     def copy_parsed_response(self):
         """ Copies the response parts from OpenAI's API to the clipboard.
@@ -103,7 +111,6 @@ class GPTAsker:
         input()
         pyperclip.copy(self.parsed_response["summary"])
 
-    
     def test_all(self, test_article_content: str = None):
         """ Tests all methods in this class.
         """
@@ -132,11 +139,12 @@ class GPTAsker:
         print(self.get_original_response())
         print(self.parse_response())
         pprint(self.parse_response())
-        self.print_response()
+        self.print_uncopyable_response()
         self.copy_parsed_response()
+        self.print_copyable_response()
     
 if __name__ == "__main__":
-    gpt = GPTAsker()
+    gpt = GPTAsker(key_path="auth/openai_api_key.config") # , rewrite_article=True)
     gpt.test_all()
     
 # check that the abstract and summary are correct

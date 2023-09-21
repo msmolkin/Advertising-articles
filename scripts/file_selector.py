@@ -15,6 +15,7 @@ def select_file():
         try:
             choice = int(input("Select the file by entering its number: ")) - 1
             filename = files[choice]
+            print("Selected file:", filename)
             if os.path.isfile(filename):
                 return filename
             else:

@@ -43,7 +43,8 @@ def _find_punctuation_mistakes(text):
     for word in all_words:
         if re.search(r'[“”‘’]', word):
             words_with_mistakes.append(word)
-    return f"Words that need to be changed: {words_with_mistakes}" if len(words_with_mistakes) > 0 else "No punctuation needs to be changed."
+    # The point of the text below is to make it easier to search for the response in the terminal
+    return f"Problematic words with mistakes that need to be changed: {words_with_mistakes}" if len(words_with_mistakes) > 0 else "No punctuation needs to be changed."
 
 def print_punctuation_mistakes(text):
     print(_find_punctuation_mistakes(text))

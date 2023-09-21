@@ -9,3 +9,6 @@ TODOs:
 2. `parse_google_doc.py`:
      • Expand the script to process more than just the text body of Google Docs.
      • Implement a method that removes images and stock photo credits from the parsed content.
+3. `ask_gpt.py`:
+     • Replace with `ask_llm.py` to allow it to use any high-powered LLM (GPT-4, PaLM 2, LLaMa), as the content returned doesn't matter too much
+     • **Save the completed chat JSON**
