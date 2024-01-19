@@ -9,6 +9,9 @@ import file_reader
 from ask_gpt import GPTAsker
 from inputimeout import inputimeout, TimeoutOccurred
 
+# from time import sleep
+# import google_indexer
+
 def main():
     if isfile(".DS_Store"):
         os.remove(".DS_Store")
@@ -56,6 +59,12 @@ def main():
         gpt.print_uncopyable_response()
         gpt.copy_parsed_response()
         gpt.print_copyable_response()
+        
+        # print("Done!")
+
+        # sleep(30)
+        # published_article_url = inputimeout(prompt="Please enter the URL of the article if you want it indexed: ", timeout=300)
+        # google_indexer.index_page(published_article_url)
 
     except Exception as e:
         print(f"An error occurred: {e}")

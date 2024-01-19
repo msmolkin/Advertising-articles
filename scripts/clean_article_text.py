@@ -1,5 +1,7 @@
 import os
 import re
+
+import pyperclip
 import file_reader
 
 
@@ -35,6 +37,9 @@ def replace_punctuation(text):
     for nonstandard, simple in punctuation_map.items():
         text = re.sub(re.escape(nonstandard), simple, text)
     
+    print("Copying the fixed article to the clipboard. Please press any key to continue...")
+    input()
+    pyperclip.copy(text)
     return text
 
 def _find_punctuation_mistakes(text):
