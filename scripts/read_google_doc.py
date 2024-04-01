@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 # How to read a Google Docs file using Python
-# Haven't tested this yet
 
 import os.path
 import pickle
