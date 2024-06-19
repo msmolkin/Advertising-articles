@@ -24,11 +24,14 @@ class GoogleDocParser:
         for website in self.stock_photo_websites:
             if website.lower() in content.lower():
                 return True
+            if "stock photo" in content.lower() or "image by" in content.lower():
+                return True
         return False
 
     def parse(self):
         # TODO: for now, it just removes the images and stock photo credits and returns the text
         parsed_content = ""
+        self.links = []
 
         for item in self.doc_content["body"]["content"]:
             if "paragraph" in item:
@@ -38,6 +41,9 @@ class GoogleDocParser:
                         content = element["textRun"]["content"]
                         if not self.is_useless_link(content):
                             parsed_content += content
+                            # if it's a link, save it for later
+                            if "textStyle" in element["textRun"] and "link" in element["textRun"]["textStyle"]:
+                                self.links.append(element["textRun"]["textStyle"]["link"]["url"])
 
                     # Remove inlineObjectElement (images) since they are not needed
                     # Uncomment the following lines if you want to keep the images
