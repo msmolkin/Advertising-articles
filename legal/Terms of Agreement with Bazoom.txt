@@ -1,0 +1,142 @@
+Terms of Agreement
+
+Between
+
+Bazoom Group ApS
+Vestergade 48H
+8000 Aarhus C, Denmark
+Vat-ID: DK41638745
+(“Bazoom”)
+
+
+and
+
+
+Macroaxis
+505 Montgomery Street, FL 10
+94111 San Francisco
+United States
+
+lsereno@macroaxis.com
+
+(“the Media”)
+
+
+(collectively “the Parties” or separate a “Party”)
+
+
+General terms:
+The Parties have on this date entered into this agreement (“the Agreement”), whereafter Bazoom is entitled to supply the Media with articles, and the Media is entitled and obliged to publish such articles on the Media´s website(s) through a separate link. The Media has the right to ask for an article to be altered if the content cannot be approved by the Media.
+The Parties have agreed that the Media is entitled to the payments set forth at the Media´s site at Bazoom Media Back-end (the “Media Back-end Site”) per published article from Bazoom. The Media is obliged to ensure that the data at the Media Back-end Site is updated. Any Changes of the agreed conditions and prices much be accepted by Bazoom or announced by the Media with a written notice of at least 3 months before they are considered agreed and implemented. The Agreement is considered terminated by the Media if Bazoom cannot accept any desired changes announced by the Media.
+The Media will, at the end of each month, through the Media Back-end Site receive a settlement note of all published articles and hence created links the last month (the “Monthly Report”). If the Media has complaints to the settlement note, such complaints should be raised in writing no later than 7 Business Days after the receipt of the Monthly Report. If no complaints have been raised within due time, the Monthly Report is to be considered as approved by the Media. The Parties agree that Bazoom (customer) will issue a settlement note as documentation for the payment (self-billing) to the Media (supplier).
+The Monthly Report will form the basis of the payment from Bazoom once the Parties have agreed on the Monthly Report, or no complaints have been raised by the Media, cf. section 5. The payment by Bazoom shall be made no later than 5 Business Days after the Monthly report is considered binding.
+The Agreement commences on the date of the signature and runs for a period of 3 months (the “Initial Subscription Period”). The Agreement will automatically be renewed for a new term of three (3) months (the “Renewal Term”) unless the Media in writing has given notice of termination at least 30 days before the end of the Initial Subscription Period or Renewal Term.
+The general terms and conditions from Bazoom are accepted by both parties and constitutes an integrated part of the Agreement with Bazoom.
+
+TERMS AND CONDITIONS (MEDIA)
+1. INTRODUCTION
+
+1.1 - The Terms and conditions (the “Terms”) are entered into by and between Bazoom Group ApS, business registration no. 41638745, Vestergade 48H, 2., DK-8000 Aarhus C, Denmark, (“Bazoom”) and the accepting media-partner (the “Media”) (Bazoom and the Media are individually referred to as a “Party” and collectively the “Parties”).
+
+1.2 - The Terms will apply to any and all cooperation between the Parties, including the Parties´ rights and obligations with regards to the delivery of services from the Media to Bazoom, whereafter Bazoom is entitled to supply the Media with articles, and the Media is entitled and obliged to publish such articles on the Media´s website(s) through a separate link.
+
+1.3 - The Terms, the Corporate Media Agreement (the “Corporate Media Agreement”) between the Parties, including any appendices enclosed to the Corporate Media Agreement, and the terms set forth on the Medias site at Bazoom (the “Media Back-end Site”) form the entire agreement between Bazoom and the Media (the “Agreement”). In the event of inconsistency between the Media Back-end Site and the Corporate Media Agreement, the terms on the Media Back-end Site take precedence over the Corporate Media Agreement. Correspondingly, the terms set forth in the Corporate Media Agreement and any appendices hereto take precedence over the Terms.
+
+1.4 - The effective date of the Agreement is the date the Media accepts the Corporate Media Agreement, either by duly signature from the Media or by the Media´s electronic confirmation of the Corporate Media Agreement (the “Effective Date”).
+
+1.5 - The Terms may be amended or modified by Bazoom at its sole discretion. Any amendments/modifications shall have effect 1 month after any amendments/modifications have been made.
+
+
+2. THE MEDIA´S OBLIGATIONS
+
+2.1 - The Media warrants
+
+that any Articles provided by Bazoom, unless otherwise agreed, will be reviewed and published on a separate link on the Media´s website within 2 business days and preferable no later than 3 business days after the article is received from Bazoom,
+that the Media has carried out the necessary internal controls of compliance with the Media´s content guidelines and applicable law before any article is published, and
+that the article and the created link, unless otherwise agreed, will continue to be online for at least 36 months after the article has been published.
+
+3. BAZOOM´S OBLIGATIONS
+
+3.1 - Bazoom warrants
+
+that the article provided to the Media is unique and will not be published in any other media
+that necessary approval from Bazooms customer has been obtained before the article is forwarded to the Media, and
+that the articles provided by Bazoom are in accordance with the Media´s content guidelines.
+
+4. REFERENCES
+
+4.1 - The Parties´ rights to respective their names, trademarks, and other intellectual property rights will remain their separate and sole property. However, Bazoom is entitled to use the name(s), trademarks, and other intellectual property rights of the Media for marketing purposes.
+
+
+5. INDEMNIFICATION
+
+5.1 - The Media agrees to indemnify and hold Bazoom and its affiliates, directors, officers, employees, agents, customers and suppliers harmless from and against any liabilities, losses, damages, or costs, including reasonable attorneys´ fees, incurred in connection with or arising from any third party allegations, claims, actions, disputes or demands asserted against any of them as a result of or relating to Bazoom´s use of the information provided by the Media for the service delivery or any other willful misconduct or negligence on the Media´s part. This includes, but is not limited to, any allegations, claims, actions, or disputes for infringement of any marketing practices legislation.
+
+
+6. DURATION
+
+6.1 - The Agreement commences on the Effective Date and shall continue for three (3) months thereafter (the “Initial Subscription Period”).
+
+6.2 The Agreement willautomatically be renewed for a new term of three (3) months (hereafter “the Renewal Term”) unless the Media in writing has given notice of termination at least 30 days before the end of the Initial Subscription Period or Renewal Term.
+
+
+7. LIABILITY AND LIMITATION OF LIABILITY
+
+7.1 - The Parties are liable for damages in accordance with the general rules of Danish law for any loss that the other Party may suffer subject to the limitations set out below.
+
+7.2 - Bazoom shall not be held liable for any indirect loss, including any operating loss, loss of revenue, loss of time, costs related to investigations of a defect/loss, loss or damage related to effects on other software, or loss or damage caused by the service delivery.
+
+7.3 - Bazoom disclaims any product liability and any liability for the validity of the information provided by the Media.
+
+7.4 - Bazoom cannot be held responsible for any content provided by Bazooms Customer or the Customer´s compliance with applicable Law. Thus, any such matters must be dealt with directly between the Media and Bazooms Customers.
+
+7.5 - Bazoom´s liability shall, in any case be limited to the value of the order placed by Bazoom, to which order the loss in question is related.
+
+
+8. BREACH OF CONTRACT
+
+8.1 - If the Media is in material breach of an Agreement, Bazoom shall be entitled to terminate the Agreement with immediate effect, as well as claim damages from the Media.
+
+8.2 - For the avoidance of doubt, the Media neglecting to comply with article 2 of the Terms shall be considered a material breach.
+
+8.3 - In addition to the ability to claim damages, Bazoom shall be entitled to any legal remedy at its disposal in accordance with applicable law.
+
+
+9. CONFIDENTIALITY
+
+9.1 - Each Party shall treat as confidential all information obtained as a result of, or in connection with, entering into or performing the Corporate Agreement which relates to (a) the existence of or the provisions of the Agreement or (b) the other Party.
+
+9.2 - The confidentiality obligation takes effect when the Media gets access to confidential information and shall remain in effect in 3 years after the termination of the Agreement.
+
+9.3 - Not withstanding clause 8.1, either Party shall be entitled to disclose any such confidential information (i) as required by Bazoom in order to fulfill its contractual obligations towards Customers, (ii) required by applicable law or regulation or pursuant to an order by a court of competent jurisdiction or a governmental authority, (iii) as required by any securities exchange or regulatory authority to which the Party is subject, (iv) with the prior written consent of the other Party, or (v) for the purpose of enforcing any right or complying with any obligation under the Corporate Agreement.
+
+
+10. FORCE MAJEURE
+
+10.1 - Each Party may claim relief from liability for non-performance of its obligations under the Agreement (other than any payment obligations) to the extent that such non-performance is due to any events, acts, omissions, happenings or non-happenings outside such Party´s reasonable control, and which could not have been reasonably foreseen, avoided or overcome in due time (“Force Majeure Event”). Strikes and lock-outs, internet failures, hacker attacks, denial of service attacks, virus or other malicious software attacks or infections, industrial disputes affecting any third party, disasters, epidemics, pandemics, explosions, fires, floods, riots, terrorist attacks, and wars shall, for the avoidance of doubt, be considered Force Majeure Events.
+
+10.2 - A Party shall, promptly after it realizes or should have realized that a Force Majeure Event has occurred, give written notice thereof to the other Party, setting out the details of the Force Majeure Event, including its effect on the obligations of the affected Party and the period for which it is estimated that the Force Majeure Event will continue as well as any action the affected Party proposes to take to mitigate its effects.
+
+10.3 - A Party whose performance of its obligations under the Agreement is affected by a Force Majeure Event must take reasonable steps to mitigate the effects of the Force Majeure Event.
+
+10.4 - Upon the Force Majeure Event ceasing to cause the affected Party to be unable to comply with its obligations under the Agreement, the affected Party shall promptly notify the other Party hereof. Following such notification, the affected Party shall resume its performance of the Agreement in accordance with its terms.
+
+10.5 - During a Force Majeure Event, the Party who does not receive the services etc., that it is entitled to because the other Party is relieved from its obligations due to said Force Majeure Event shall likewise be relieved of its contractual obligations in the same period, including - but not limited to - its payment obligations.
+
+
+11. ASSIGNMENT
+
+11.1 - The Media may not assign any of its rights and obligations under the Agreement without Bazoom´s prior written consent.
+
+11.2 - Bazoom may assign its rights and obligations under the Agreement at its sole discretion.
+
+
+12. GOVERNING LAW
+
+12.1 - The Agreement and any dispute or claim arising out of or in relation to the Agreement shall be governed by and construed in accordance with Danish law without regard to its principles on choice of law.
+
+
+13. VENUE
+
+13.1 - Any dispute arising out of or in connection with the Agreement, including any disputes regarding the existence, validity, or termination hereof, shall be settled by the ordinary Danish courts, with the City Court of Aarhus as the court of first instance.
+
