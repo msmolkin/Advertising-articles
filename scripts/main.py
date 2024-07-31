@@ -9,6 +9,9 @@ import file_reader
 from ask_gpt import GPTAsker
 from inputimeout import inputimeout, TimeoutOccurred
 
+# from scripts import check_if_ai_article
+import check_if_ai_article
+
 # from time import sleep
 # import google_indexer
 
@@ -50,6 +53,8 @@ def main():
         print(cleaned_article)
 
         clean_article_text.print_punctuation_mistakes(orig_article_text)
+        
+        check_if_ai_article.print_is_ai(cleaned_article)  # check if the article is AI-generated
 
         auth_path = Path(__file__).resolve().parent.parent / "auth"
         openai_api_key_path = os.path.join(auth_path, "openai_api_key.config")
