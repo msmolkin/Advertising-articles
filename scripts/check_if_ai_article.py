@@ -8,6 +8,9 @@ def print_is_ai(article_text: str) -> None:
     """
     words = [
         "delv",  # delve
+        "leverag",  # leverage
+        "labrynth",
+        "paradigm",
         "elevat",  # elevate
         "tapestry",
         "resonat",  # resonate
