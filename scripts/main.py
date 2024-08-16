@@ -68,6 +68,9 @@ def main():
         gpt.copy_parsed_response()
         gpt.print_copyable_response()
         
+        print("Checking if the response appears to be AI-generated...")
+        check_if_ai_article.print_is_ai(gpt.return_copyable_response())
+        
         # print("Done!")
 
         # sleep(30)

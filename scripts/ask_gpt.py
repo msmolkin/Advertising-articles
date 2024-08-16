@@ -84,6 +84,13 @@ class GPTAsker:
         # pprint the parsed response, but only the keys that cannot be copied: length, symbol, category, coverage
         print('\n'.join(f"{k}: {v}" for k, v in self.parsed_response.items() if k in ["length", "symbol", "category", "coverage"]))
 
+    def return_copyable_response(self):
+        """ Returns the response from OpenAI's API.
+        """
+        if not self.original_response:
+            raise Exception("You need to call ask_gpt() first. This method depends on the original response from OpenAI's API.")
+        return '\n'.join(f"{k}: {v}" for k, v in self.parsed_response.items() if k not in ["length", "symbol", "category", "coverage"])
+    
     def print_copyable_response(self):
         """ Prints the response from OpenAI's API.
         Print the parts of the response that were copied in case the user didn't save them.
@@ -91,7 +98,7 @@ class GPTAsker:
         if not self.original_response:
             raise Exception("You need to call ask_gpt() first. This method depends on the original response from OpenAI's API.")
         print("Here are the parts of the response that were copied to the clipboard:")
-        print('\n'.join(f"{k}: {v}" for k, v in self.parsed_response.items() if k not in ["length", "symbol", "category", "coverage"]))
+        print(self.return_copyable_response())
     
     def copy_parsed_response(self):
         """ Copies the response parts from OpenAI's API to the clipboard.
@@ -144,6 +151,8 @@ class GPTAsker:
         pprint(self.parse_response())
         self.print_uncopyable_response()
         self.copy_parsed_response()
+        response = self.return_copyable_response()
+        # import check_if_ai_article; check_if_ai_article.print_is_ai(response)
         self.print_copyable_response()
     
 if __name__ == "__main__":
