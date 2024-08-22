@@ -3,6 +3,7 @@ from time import time, sleep
 from docx import Document
 from read_google_doc import read_google_doc
 from parse_google_doc import GoogleDocParser
+from read_bazoom_article import read_finalarticle_article
 
 class FileDownloadError(Exception):
     """Raised when a file is not successfully downloaded from the server."""
@@ -93,12 +94,14 @@ class FileReader:
             # return f.read()
     
     @staticmethod
-    def read_article(filename: str = "original_article.txt", gdocs_url: str = None, gdocs_id: str = None):
+    def read_article(filename: str = "original_article.txt", gdocs_url: str = None, gdocs_id: str = None, final_article_url: str = None):
         try:
             if gdocs_id is not None or gdocs_url is not None:
                 return read_google_doc(gdocs_url, gdocs_id)
-            
-            FileReader.check_and_download_file(filename)
+            elif final_article_url is not None:
+                return read_finalarticle_article(final_article_url)
+            else:
+                FileReader.check_and_download_file(filename)
 
             if filename.endswith(".txt") or os.path.isfile(filename) and not "." in filename:
                 return FileReader.read_text_file(filename)
@@ -151,7 +154,7 @@ class FileReader:
     
     @staticmethod
     def test_read_article(*args, **kwargs):
-        filename = gdocs_url = gdocs_id = None
+        filename = gdocs_url = gdocs_id = final_article_url = None
         if args:
             if isinstance(args[0], str):
                 if args[0][-4:] in [".txt", ".rtf", "docx", ".doc"] or "." not in args[0]:
@@ -163,8 +166,9 @@ class FileReader:
 
         filename = filename or kwargs.get("filename", "original_article.txt")
         gdocs_url = gdocs_url or kwargs.get("gdocs_url")
-        gdocs_id = gdocs_id or kwargs.get("gdocs_id")   
-        FileReader.print_article(FileReader.read_article(filename, gdocs_url, gdocs_id))
+        gdocs_id = gdocs_id or kwargs.get("gdocs_id")
+        final_article_url = final_article_url or kwargs.get("final_article_url")
+        FileReader.print_article(FileReader.read_article(filename, gdocs_url, gdocs_id, final_article_url))
 
 if __name__ == "__main__":
     os.chdir("articles")
@@ -181,7 +185,8 @@ if __name__ == "__main__":
     
     file_reader.test_read_article(gdocs_id="1oMWUwJ_eMIPxtR3sHPA4v67X0oUGqghRHrTa_2XgmMI") # test with Google Docs ID
     """
-    file_reader.test_read_article(gdocs_url="https://docs.google.com/document/d/1oMWUwJ_eMIPxtR3sHPA4v67X0oUGqghRHrTa_2XgmMI/edit") # test with Google Docs URL
+    # file_reader.test_read_article(gdocs_url="https://docs.google.com/document/d/1oMWUwJ_eMIPxtR3sHPA4v67X0oUGqghRHrTa_2XgmMI/edit") # test with Google Docs URL
     #file_reader.test_read_article(filename="5729-T2131 - O22750-L107911-M119491 - macroaxis.com.docx")
+    file_reader.test_read_article(final_article_url="https://final-article.com/0a0ed0d6-3a02-4d79-ac15-a79cd3047d92/edit")
 
 # TODO 2: I may have just messed things up. I just made it so that the read_article function returns a list of tuples instead of a string.

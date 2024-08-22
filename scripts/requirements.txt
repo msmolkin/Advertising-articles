@@ -1,9 +1,13 @@
 python-docx
 google-auth-oauthlib
-google-api-python-client    # requires: google-auth-httplib2
+google-api-python-client
+google-auth-httplib2 # required by google-api-python-client
 openai==0.28
 pyperclip
 inputimeout
+bs4
 
 # googleapiclient
 # boto3
+
+requests

@@ -38,10 +38,19 @@ def main():
             orig_article_json = file_reader.FileReader.read_article(gdocs_url=gdocs_url)
             orig_article_text = file_reader.FileReader.parse_article(orig_article_json)
         else:
-            while not isfile(filename):
-                # let user scroll through and select a file
-                filename = select_file()
-            
+            try:
+                response = inputimeout(prompt='Is the article from final-article.com? (y/n) ', timeout=5).lower()
+            except TimeoutOccurred:
+                response = 'n'
+
+            if response in "tyu":  # accounts for typos
+                final_article_url = input("final-article.com URL: ")
+                orig_article_json = file_reader.FileReader.read_article(final_article_url=final_article_url)
+                orig_article_text = file_reader.FileReader.parse_article(orig_article_json)
+            else:
+                while not isfile(filename):
+                    # let user scroll through and select a file
+                    filename = select_file()
     
     try:
         if not orig_article_text:
