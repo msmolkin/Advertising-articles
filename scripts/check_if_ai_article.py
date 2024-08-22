@@ -13,6 +13,7 @@ def print_is_ai(article_text: str) -> None:
         "paradigm",
         "elevat",  # elevate
         "tapestry",
+        "realm",
         "resonat",  # resonate
         "multifacet",  # multifaceted
         "beacon",
@@ -47,14 +48,15 @@ def print_is_ai(article_text: str) -> None:
         for root in detected_words:
             print("AI word detected! Root word:", root)
             print(f"- {root}")
+        print(f"There are {len(detected_words)} AI words detected.")
     else:
         print("No AI words detected.")
 
 def test_print_is_ai():
-    print_is_ai("The tapestry of the article is crucial to the juncture of the story.") # tapestry, crucial, juncture
-    print_is_ai("The article is bespokely crafted") # bespoke, crafted
-    print_is_ai("The article is not AI-generated.") # no AI words detected
-    print_is_ai("The article is not AI-generated. It is a dynamic piece of writing.") # dynamic
+    # print_is_ai("The tapestry of the article is crucial to the juncture of the story.") # tapestry, crucial, juncture
+    # print_is_ai("The article is bespokely crafted") # bespoke, crafted
+    # print_is_ai("The article is not AI-generated.") # no AI words detected
+    # print_is_ai("The article is not AI-generated. It is a dynamic piece of writing.") # dynamic
     if input("Test on clipboard text? (y/n) ").lower() in "tyu":
         import pyperclip
         clipboard_text = pyperclip.paste()

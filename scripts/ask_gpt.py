@@ -89,7 +89,7 @@ class GPTAsker:
         """
         if not self.original_response:
             raise Exception("You need to call ask_gpt() first. This method depends on the original response from OpenAI's API.")
-        return '\n'.join(f"{k}: {v}" for k, v in self.parsed_response.items() if k not in ["length", "symbol", "category", "coverage"])
+        return '\n\n'.join(f"{k}: {v}" for k, v in self.parsed_response.items() if k not in ["length", "symbol", "category", "coverage"])
     
     def print_copyable_response(self):
         """ Prints the response from OpenAI's API.
