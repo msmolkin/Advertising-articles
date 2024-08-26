@@ -1,6 +1,5 @@
 # build a static script to check if an article is AI or not
 
-@staticmethod
 def print_is_ai(article_text: str) -> None:
     """
     Print whether the article is AI-generated or not.
