@@ -32,7 +32,8 @@ def print_is_ai(article_text: str) -> None:
         "junct",  # juncture
         "craft",
         "landscap",  # landscape
-        "apparent", # becomes apparent
+        "apparent", # becomes apparent,
+        "utiliz",  # utilize
         # "of" # need to find a way to also detect things such as "the convergence of cryptocurrency and AI technology"
     ]
     # words that may be AI words but also might not
