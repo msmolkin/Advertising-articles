@@ -57,6 +57,42 @@ def print_is_ai(article_text: str) -> None:
         print(f"There are {len(detected_words)} AI words detected.")
     else:
         print("No AI words detected.")
+    
+    
+    print_passive_voice(article_text)
+    
+def print_passive_voice(article_text: str) -> None:
+    # TODO: add a proper check for the word "of" to detect phrases such as "the convergence of cryptocurrency and AI technology," which checks for passive voice
+    # TODO: add a proper check for the word "is" to detect phrases such as "meticulous due diligence is essential for comprehending the risks involved," which checks for passive voice
+    """
+    Print whether the article is written in passive voice.
+    :param article_text: The article text to check.
+    """
+    passive_voice_words = [
+        "is",
+        "are",
+        "was",
+        "were",
+        "been",
+        "being",
+        "be",
+        "by",
+        "of"
+    ]
+    detected_passive_voice_words = []
+    for word in passive_voice_words:
+        if word in article_text.lower():
+            detected_passive_voice_words.append(word)
+    
+    detected_passive_voice_words = list(set(detected_passive_voice_words))  # remove duplicates
+
+    if detected_passive_voice_words:
+        for word in detected_passive_voice_words:
+            print("Passive voice word detected! Word:", word)
+            print(f"- {word}")
+        print(f"There are {len(detected_passive_voice_words)} passive voice words detected.")
+    else:
+        print("No passive voice words detected.")
 
 def test_print_is_ai():
     # print_is_ai("The tapestry of the article is crucial to the juncture of the story.") # tapestry, crucial, juncture
