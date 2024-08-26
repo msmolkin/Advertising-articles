@@ -1,99 +1,57 @@
 # build a static script to check if an article is AI or not
 
+def detect_ai_words(article_text: str, words: list, possible_words: list) -> list:
+    """
+    Detect AI-related words in the article text.
+    :param article_text: The article text to check.
+    :param words: List of definite AI-related words.
+    :param possible_words: List of possible AI-related words.
+    :return: List of detected AI words.
+    """
+    words += possible_words
+    detected_words = [root for root in words if root in article_text.lower()]
+    return list(set(detected_words))
+
+def detect_passive_voice(article_text: str) -> list:
+    """
+    Detect passive voice indicators in the article text.
+    :param article_text: The article text to check.
+    :return: List of detected passive voice words.
+    """
+    passive_voice_words = ["is", "are", "was", "were", "been", "being", "be", "by", "of"]
+    detected_passive_voice_words = [word for word in passive_voice_words if word in article_text.lower()]
+    return list(set(detected_passive_voice_words))
+
+def print_detection_results(detected_words: list, detection_type: str) -> None:
+    """
+    Print the results of detection.
+    :param detected_words: List of detected words.
+    :param detection_type: Type of detection ("AI words" or "passive voice").
+    """
+    if detected_words:
+        print(f"{len(detected_words)} {detection_type} detected:")
+        for word in detected_words:
+            print(f"- {word}")
+    else:
+        print(f"No {detection_type} detected.")
+
 def print_is_ai(article_text: str) -> None:
     """
     Print whether the article is AI-generated or not.
     :param article_text: The article text to check.
     """
-    words = [
-        "delv",  # delve
-        "leverag",  # leverage
-        "labrynth",
-        "paradigm",
-        "elevat",  # elevate
-        "tapestry",
-        "realm",
-        "resonat",  # resonate
-        "multifacet",  # multifaceted
-        "beacon",
-        "interplay",
-        "paramount",
-        "orchestr",  # orchestrate
-        "annal",  # annals
-        "enigma",
-        "indelible",
-        "whims",  # whimsical
-        "bespok", # bespoke
-        "nuanced",
-        "dynamic",
-        "crucial",
-        "crux",
-        "key",
-        "junct",  # juncture
-        "craft",
-        "landscap",  # landscape
-        "apparent", # becomes apparent,
-        "utiliz",  # utilize
-        # "of" # need to find a way to also detect things such as "the convergence of cryptocurrency and AI technology"
+    ai_words = [
+        "delv", "leverag", "labrynth", "paradigm", "elevat", "tapestry", "realm", "resonat",
+        "multifacet", "beacon", "interplay", "paramount", "orchestr", "annal", "enigma",
+        "indelible", "whims", "bespok", "nuanced", "dynamic", "crucial", "crux", "key", "junct", "craft", "landscap", "apparent", "utiliz"
     ]
-    # words that may be AI words but also might not
-    possible_words = [
-        "vital",
-    ]
+    possible_ai_words = ["vital"]
     
-    # for now, include possible words in the list of words to detect
-    words += possible_words
-
-    detected_words = []
-    for root in words:
-        if root in article_text.lower():
-            detected_words.append(root)
-
-    detected_words = list(set(detected_words))  # remove duplicates
-
-    if detected_words:
-        for root in detected_words:
-            print("AI word detected! Root word:", root)
-            print(f"- {root}")
-        print(f"There are {len(detected_words)} AI words detected.")
-    else:
-        print("No AI words detected.")
+    detected_ai_words = detect_ai_words(article_text, ai_words, possible_ai_words)
+    detected_passive_voice_words = detect_passive_voice(article_text)
     
-    
-    print_passive_voice(article_text)
-    
-def print_passive_voice(article_text: str) -> None:
-    # TODO: add a proper check for the word "of" to detect phrases such as "the convergence of cryptocurrency and AI technology," which checks for passive voice
-    # TODO: add a proper check for the word "is" to detect phrases such as "meticulous due diligence is essential for comprehending the risks involved," which checks for passive voice
-    """
-    Print whether the article is written in passive voice.
-    :param article_text: The article text to check.
-    """
-    passive_voice_words = [
-        "is",
-        "are",
-        "was",
-        "were",
-        "been",
-        "being",
-        "be",
-        "by",
-        "of"
-    ]
-    detected_passive_voice_words = []
-    for word in passive_voice_words:
-        if word in article_text.lower():
-            detected_passive_voice_words.append(word)
-    
-    detected_passive_voice_words = list(set(detected_passive_voice_words))  # remove duplicates
-
-    if detected_passive_voice_words:
-        for word in detected_passive_voice_words:
-            print("Passive voice word detected! Word:", word)
-            print(f"- {word}")
-        print(f"There are {len(detected_passive_voice_words)} passive voice words detected.")
-    else:
-        print("No passive voice words detected.")
+    print_detection_results(detected_ai_words, "AI words")
+    print_detection_results(detected_passive_voice_words, "passive voice")
 
 def test_print_is_ai():
     # print_is_ai("The tapestry of the article is crucial to the juncture of the story.") # tapestry, crucial, juncture
