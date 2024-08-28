@@ -51,7 +51,7 @@ def print_is_ai(article_text: str) -> None:
     detected_passive_voice_words = detect_passive_voice(article_text)
     
     print_detection_results(detected_ai_words, "AI words")
-    print_detection_results(detected_passive_voice_words, "passive voice")
+    print_detection_results(detected_passive_voice_words, "passive voice signal words")
 
 def test_print_is_ai():
     # print_is_ai("The tapestry of the article is crucial to the juncture of the story.") # tapestry, crucial, juncture
