@@ -180,11 +180,11 @@ if __name__ == "__main__":
     file_reader.test_read_article(filename="802B7D14 Lore.txt") # test with TXT file that exists
     file_reader.test_read_article([f for f in os.listdir() if f.startswith("v")][0]) # test with sparse file
     file_reader.test_read_article(filename="expat_us_tax.rtf") # test with RTF file
-    file_reader.test_read_article(filename="AT-15-238 macroaxis.com JMC (A9648WC900) CAN.docx") # test with DOCX file
+    file_reader.test_read_article(filename="filename.docx") # test with DOCX file
     file_reader.test_read_article(filename="original_article.doc") # test with DOC file # TODO: will download a DOC file directly to test this if this becomes a common file type
     
-    file_reader.test_read_article(gdocs_id="1oMWUwJ_eMIPxtR3sHPA4v67X0oUGqghRHrTa_2XgmMI") # test with Google Docs ID
+    file_reader.test_read_article(gdocs_id="article_id") # test with Google Docs ID
     """
-    # file_reader.test_read_article(gdocs_url="https://docs.google.com/document/d/1oMWUwJ_eMIPxtR3sHPA4v67X0oUGqghRHrTa_2XgmMI/edit") # test with Google Docs URL
-    #file_reader.test_read_article(filename="5729-T2131 - O22750-L107911-M119491 - macroaxis.com.docx")
-    file_reader.test_read_article(final_article_url="https://final-article.com/0a0ed0d6-3a02-4d79-ac15-a79cd3047d92/edit")
+    # file_reader.test_read_article(gdocs_url="https://docs.google.com/document/d/article_id/edit") # test with Google Docs URL
+    #file_reader.test_read_article(filename="filename.docx")
+    file_reader.test_read_article(final_article_url="https://final-article.com/article_id_here/edit")

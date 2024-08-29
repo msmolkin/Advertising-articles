@@ -54,7 +54,7 @@ def test_read_finalarticle_article():
     if input("Test with the URL in the clipboard? (y/n) ") == "y":
         test_url = pyperclip.paste()
     else:
-        test_url = "https://final-article.com/0a0ed0d6-3a02-4d79-ac15-a79cd3047d92"
+        test_url = "https://final-article.com/article_id_here"
     
     result = read_finalarticle_article(test_url)
     

@@ -56,8 +56,8 @@ def test_read_google_doc(doc_url):
 
 # Usage:
 if __name__ == "__main__":
-    # read_google_doc(doc_url="https://docs.google.com/document/d/1oMWUwJ_eMIPxtR3sHPA4v67X0oUGqghRHrTa_2XgmMI/edit")
-    # read_google_doc("https://docs.google.com/document/d/1WXU2ParZc_kWUAweTTK7-7TNWrfoINkfFaGcweU1CAY/edit")
-    test_read_google_doc("https://docs.google.com/document/d/1WXU2ParZc_kWUAweTTK7-7TNWrfoINkfFaGcweU1CAY/edit")
+    # read_google_doc(doc_url="https://docs.google.com/document/d/1Hzv8OdXQIC9bVz7HTKUzWc9Pe1RYklr-5SsCzGWnm5w/edit")
+    # read_google_doc("https://docs.google.com/document/d/1Hzv8OdXQIC9bVz7HTKUzWc9Pe1RYklr-5SsCzGWnm5w/edit")
+    test_read_google_doc("https://docs.google.com/document/d/1Hzv8OdXQIC9bVz7HTKUzWc9Pe1RYklr-5SsCzGWnm5w/edit")
 
 # This script will open a new window to authenticate your Google account that has access to the Google Docs when you run the script for the first time.
