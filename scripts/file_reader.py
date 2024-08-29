@@ -188,5 +188,3 @@ if __name__ == "__main__":
     # file_reader.test_read_article(gdocs_url="https://docs.google.com/document/d/1oMWUwJ_eMIPxtR3sHPA4v67X0oUGqghRHrTa_2XgmMI/edit") # test with Google Docs URL
     #file_reader.test_read_article(filename="5729-T2131 - O22750-L107911-M119491 - macroaxis.com.docx")
     file_reader.test_read_article(final_article_url="https://final-article.com/0a0ed0d6-3a02-4d79-ac15-a79cd3047d92/edit")
-
-# TODO 2: I may have just messed things up. I just made it so that the read_article function returns a list of tuples instead of a string.
