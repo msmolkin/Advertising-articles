@@ -43,7 +43,8 @@ def print_is_ai(article_text: str) -> None:
     ai_words = [
         "delv", "leverag", "labrynth", "paradigm", "elevat", "tapestry", "realm", "resonat",
         "multifacet", "beacon", "interplay", "paramount", "orchestr", "annal", "enigma",
-        "indelible", "whims", "bespok", "nuanced", "dynamic", "crucial", "crux", "key", "junct", "craft", "landscap", "apparent", "utiliz"
+        "indelible", "whims", "bespok", "nuanced", "dynamic", "crucial", "crux", "key", "junct",
+        "craft", "landscap", "apparent", "utiliz", "tasked", "spearhead", "pioneer"
     ]
     possible_ai_words = ["vital"]
     
