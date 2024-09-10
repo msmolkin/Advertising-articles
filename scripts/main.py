@@ -67,9 +67,10 @@ def main():
 
         auth_path = Path(__file__).resolve().parent.parent / "auth"
         openai_api_key_path = os.path.join(auth_path, "openai_api_key.config")
-        what_to_modify = input("Please write what needs to be changed: ") if input("Would you like to modify the article for any reason? (y/n) ").lower() in "tyu" else None
-        is_rewrite_article = False
-        if what_to_modify: is_rewrite_article = True
+        is_rewrite_article, what_to_modify = False, None
+        if input("Would you like to modify the article for any reason? (y/n) ").lower() in "tyu":
+            what_to_modify = input("Please write what needs to be changed: ")
+            is_rewrite_article = True
         gpt = GPTAsker(openai_api_key_path, rewrite_article=is_rewrite_article, add_more=what_to_modify)
         gpt.ask_gpt(cleaned_article)
         gpt.parse_response()
