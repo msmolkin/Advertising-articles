@@ -94,11 +94,23 @@ class FileReader:
             # return f.read()
     
     @staticmethod
+    def save_article_url(url):
+        articles_dir = os.path.join(os.getcwd(), "articles")
+        previous_article_urls_file = os.path.join(articles_dir, "previous_article_urls.txt")
+        if not os.path.isdir(articles_dir):
+            os.mkdir(articles_dir)
+        with open(previous_article_urls_file, "a") as f:
+            f.write(f"{url}\n")
+        print("Article URL saved.")
+    
+    @staticmethod
     def read_article(filename: str = "original_article.txt", gdocs_url: str = None, gdocs_id: str = None, final_article_url: str = None):
         try:
             if gdocs_id is not None or gdocs_url is not None:
+                FileReader.save_article_url(gdocs_url)
                 return read_google_doc(gdocs_url, gdocs_id)
             elif final_article_url is not None:
+                FileReader.save_article_url(final_article_url)
                 return read_finalarticle_article(final_article_url)
             else:
                 FileReader.check_and_download_file(filename)
@@ -170,6 +182,10 @@ class FileReader:
         final_article_url = final_article_url or kwargs.get("final_article_url")
         FileReader.print_article(FileReader.read_article(filename, gdocs_url, gdocs_id, final_article_url))
 
+    @staticmethod
+    def test_save_article_url():
+        FileReader.save_article_url("https://docs.google.com/document/d/article_id/edit")
+        FileReader.save_article_url("https://final-article.com/article_id_here/edit")
 if __name__ == "__main__":
     os.chdir("articles")
     if os.path.isfile(".DS_Store"):
@@ -184,7 +200,11 @@ if __name__ == "__main__":
     file_reader.test_read_article(filename="original_article.doc") # test with DOC file # TODO: will download a DOC file directly to test this if this becomes a common file type
     
     file_reader.test_read_article(gdocs_id="article_id") # test with Google Docs ID
-    """
+    
     # file_reader.test_read_article(gdocs_url="https://docs.google.com/document/d/article_id/edit") # test with Google Docs URL
-    #file_reader.test_read_article(filename="filename.docx")
-    file_reader.test_read_article(final_article_url="https://final-article.com/article_id_here/edit")
+    # file_reader.test_read_article(filename="filename.docx")
+    # file_reader.test_read_article(final_article_url="https://final-article.com/article_id_here/edit")
+    
+    # FileReader.test_save_article_url()
+    """
+    
